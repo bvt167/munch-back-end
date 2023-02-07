@@ -20,11 +20,16 @@ export default class DatabaseController {
 
   registerRestaurant = async (req: Request, res: Response) => {
     try {
-      const restaurantName: string = req.body.name;
-      const newRestaurant = new this.RestaurantModel({
-        name: restaurantName
+      if (!this.isValidRequestBody(req.body)) {
+        throw new Error("Invalid body parameters");
+      }
+      await this.RestaurantModel.create({
+        restaurantName: req.body.restaurantName,
+        email: req.body.email,
+        password: req.body.password,
+        jobTitle: req.body.jobTitle,
+        address: req.body.address
       });
-      await newRestaurant.save();
       return res.status(200).json({
         status: SUCCESS
       });
@@ -34,6 +39,10 @@ export default class DatabaseController {
         status: FAILURE
       });
     }
+  }
+
+  private isValidRequestBody= (body: any): boolean => {
+    return body && body.restaurantName && body.email && body.password && body.jobTitle && body.address;
   }
 
 }

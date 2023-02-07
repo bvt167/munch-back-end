@@ -6,7 +6,11 @@ import { Restaurant } from "../interface/Restaurant";
 import { Schema } from 'mongoose';
 
 const restaurantSchema = new Schema<Restaurant>({
-  name: { type: String, required: true }
+  restaurantName: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  jobTitle: { type: String, required: true },
+  address: { type: String, required: true }
 });
 
 export default restaurantSchema;
