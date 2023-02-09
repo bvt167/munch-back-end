@@ -15,6 +15,7 @@ export default class DatabaseRoutes {
     this.controller = controller;
 
     router.post("/register", this.controller.registerRestaurant);
+    router.post("/login", this.controller.loginRestaurant);
   }
 
   getRouter = (): Router => {

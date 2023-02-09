@@ -5,7 +5,7 @@
 import { Model, Mongoose } from "mongoose";
 import { Restaurant } from "../interface/Restaurant";
 import { Request, Response } from "express";
-import { FAILURE, RESTAURANT, SUCCESS } from "../constant/CommonConstants";
+import { ACCOUNT_ALREADY_REGISTERED, FAILURE, INVALID_BODY_PARAMETERS, INVALID_LOGIN, NON_VALIDATED_RESTAURANT, RESTAURANT, SUCCESS } from "../constant/CommonConstants";
 import RestaurantSchema from "../database/RestaurantSchema";
 
 export default class DatabaseController {
@@ -20,15 +20,28 @@ export default class DatabaseController {
 
   registerRestaurant = async (req: Request, res: Response) => {
     try {
-      if (!this.isValidRequestBody(req.body)) {
-        throw new Error("Invalid body parameters");
+      if (!this.isValidRegisterRequest(req.body)) {
+        return res.status(401).json({
+          status: INVALID_BODY_PARAMETERS
+        });
       }
+      const restaurant = await this.RestaurantModel.findOne({
+        email: req.body.email,
+        password: req.body.password
+      });
+      if (restaurant) {
+        return res.status(401).json({
+          status: ACCOUNT_ALREADY_REGISTERED
+        });
+      }
+
       await this.RestaurantModel.create({
         restaurantName: req.body.restaurantName,
         email: req.body.email,
         password: req.body.password,
         jobTitle: req.body.jobTitle,
-        address: req.body.address
+        address: req.body.address,
+        isValidated: false
       });
       return res.status(200).json({
         status: SUCCESS
@@ -41,8 +54,45 @@ export default class DatabaseController {
     }
   }
 
-  private isValidRequestBody= (body: any): boolean => {
+  loginRestaurant = async(req: Request, res: Response) => {
+    try {
+      if (!this.isValidLoginRequest(req.body)) {
+        return res.status(401).json({
+          status: INVALID_BODY_PARAMETERS
+        });
+      }
+      const restaurant = await this.RestaurantModel.findOne({
+        email: req.body.email,
+        password: req.body.password
+      });
+
+      if (!restaurant) {
+        return res.status(401).json({
+          status: INVALID_LOGIN
+        });
+      }
+
+      if (!restaurant.isValidated) {
+        return res.status(401).json({
+          status: NON_VALIDATED_RESTAURANT
+        });
+      }
+
+      return res.status(200).json(restaurant);
+    } catch(error) {
+      console.log(error);
+      return res.status(501).json({
+        status: FAILURE
+      });
+    }
+  }
+
+  private isValidRegisterRequest = (body: any): boolean => {
     return body && body.restaurantName && body.email && body.password && body.jobTitle && body.address;
+  }
+
+  private isValidLoginRequest = (body: any): boolean => {
+    return body && body.email && body.password;
   }
 
 }

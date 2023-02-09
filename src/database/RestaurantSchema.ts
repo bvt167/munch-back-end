@@ -10,7 +10,8 @@ const restaurantSchema = new Schema<Restaurant>({
   email: { type: String, required: true },
   password: { type: String, required: true },
   jobTitle: { type: String, required: true },
-  address: { type: String, required: true }
+  address: { type: String, required: true },
+  isValidated: { type: Boolean, required: true }
 });
 
 export default restaurantSchema;

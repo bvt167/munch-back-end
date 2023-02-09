@@ -6,25 +6,31 @@ export interface Restaurant {
   /**
    * Restaurant name.
    */
-  restaurantName: string,
+  restaurantName: string
 
   /**
    * Account email.
    */
-  email: string,
+  email: string
 
   /**
    * Account password.
    */
-  password: string,
+  password: string
 
   /**
    * Account job title.
    */
-  jobTitle: string,
+  jobTitle: string
 
   /**
    * Restaurant address.
    */
   address: string
+
+  /**
+   * Validation status.
+   */
+  isValidated: boolean
+
 }
