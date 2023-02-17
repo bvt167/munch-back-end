@@ -26,11 +26,15 @@ Body:
 ```
 - **Example Response:**
 ```json
+{
     "status": "success"
+}
 ```
 or
 ```json
+{
     "status": "failure"
+}
 ```
 - **Error Handling:**
  - **400:** Missing body parameters, account already registered
@@ -53,11 +57,15 @@ or
  ```
  - **Example Response:**
  ```json
+ {
      "status": "success"
+ }
  ```
  or
  ```json
+ {
      "status": "failure"
+ }
  ```
  - **Error Handling:**
   - **400:** Missing body parameters, account not found, restaurant not validated
@@ -82,11 +90,15 @@ or
   ```
   - **Example Response:**
   ```json
+  {
       "status": "success"
+  }
   ```
   or
   ```json
+  {
       "status": "failure"
+  }
   ```
   - **Error Handling:**
    - **400:** Missing body parameters, account not found
