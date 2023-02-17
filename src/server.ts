@@ -7,8 +7,8 @@ import express, { Express } from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import { DATABASE_URI } from './constant/CommonConstants';
-import DatabaseController from './controller/databaseController';
-import DatabaseRoutes from './routes/databaseRoutes';
+import AccountController from './controller/accountController';
+import DatabaseRoutes from './routes/accountRoutes';
 
 main();
 
@@ -38,11 +38,11 @@ async function main() {
   });
 
   /** Routes setup. */
-  const databaseController = new DatabaseController(mongoose);
+  const databaseController = new AccountController(mongoose);
   const databaseRoutes = new DatabaseRoutes(express.Router(), databaseController);
 
   /** Routes */
-  router.use('/database', databaseRoutes.getRouter());
+  router.use('/account', databaseRoutes.getRouter());
 
   /** Error handling */
   router.use((req, res, next) => {

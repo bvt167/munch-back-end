@@ -8,7 +8,7 @@ import { Request, Response } from "express";
 import { ACCOUNT_ALREADY_REGISTERED, FAILURE, INVALID_BODY_PARAMETERS, INVALID_LOGIN, NON_VALIDATED_RESTAURANT, RESTAURANT, SUCCESS } from "../constant/CommonConstants";
 import RestaurantSchema from "../database/RestaurantSchema";
 
-export default class DatabaseController {
+export default class AccountController {
 
   private mongoose: Mongoose;
   private RestaurantModel: Model<Restaurant>;
@@ -21,7 +21,7 @@ export default class DatabaseController {
   registerRestaurant = async (req: Request, res: Response) => {
     try {
       if (!this.isValidRegisterRequest(req.body)) {
-        return res.status(401).json({
+        return res.status(400).json({
           status: INVALID_BODY_PARAMETERS
         });
       }
@@ -30,7 +30,7 @@ export default class DatabaseController {
         password: req.body.password
       });
       if (restaurant) {
-        return res.status(401).json({
+        return res.status(400).json({
           status: ACCOUNT_ALREADY_REGISTERED
         });
       }
@@ -48,7 +48,7 @@ export default class DatabaseController {
       });
     } catch(error) {
       console.log(error);
-      return res.status(501).json({
+      return res.status(500).json({
         status: FAILURE
       });
     }
@@ -57,7 +57,7 @@ export default class DatabaseController {
   loginRestaurant = async(req: Request, res: Response) => {
     try {
       if (!this.isValidLoginRequest(req.body)) {
-        return res.status(401).json({
+        return res.status(400).json({
           status: INVALID_BODY_PARAMETERS
         });
       }
@@ -67,13 +67,13 @@ export default class DatabaseController {
       });
 
       if (!restaurant) {
-        return res.status(401).json({
+        return res.status(400).json({
           status: INVALID_LOGIN
         });
       }
 
       if (!restaurant.isValidated) {
-        return res.status(401).json({
+        return res.status(400).json({
           status: NON_VALIDATED_RESTAURANT
         });
       }
@@ -81,7 +81,7 @@ export default class DatabaseController {
       return res.status(200).json(restaurant);
     } catch(error) {
       console.log(error);
-      return res.status(501).json({
+      return res.status(500).json({
         status: FAILURE
       });
     }

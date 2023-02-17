@@ -3,14 +3,14 @@
  */
 
 import { Router } from 'express';
-import DatabaseController from '../controller/databaseController';
+import AccountController from '../controller/accountController';
 
 export default class DatabaseRoutes {
 
   private router: Router;
-  private controller: DatabaseController;
+  private controller: AccountController;
 
-  constructor(router: Router, controller: DatabaseController) {
+  constructor(router: Router, controller: AccountController) {
     this.router = router;
     this.controller = controller;
 
