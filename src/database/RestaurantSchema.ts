@@ -3,7 +3,7 @@
  */
 
 import { Restaurant } from "../interface/Restaurant";
-import { Schema } from 'mongoose';
+import { Schema } from "mongoose";
 
 const restaurantSchema = new Schema<Restaurant>({
   restaurantName: { type: String, required: true },
@@ -11,7 +11,7 @@ const restaurantSchema = new Schema<Restaurant>({
   password: { type: String, required: true },
   jobTitle: { type: String, required: true },
   address: { type: String, required: true },
-  isValidated: { type: Boolean, required: true }
+  isValidated: { type: Boolean, required: true },
 });
 
 export default restaurantSchema;

@@ -2,11 +2,10 @@
  * Sets up account routes.
  */
 
-import { Router } from 'express';
-import AccountController from '../controller/accountController';
+import { Router } from "express";
+import AccountController from "../controller/accountController";
 
 export default class DatabaseRoutes {
-
   private router: Router;
   private controller: AccountController;
 
@@ -20,6 +19,5 @@ export default class DatabaseRoutes {
 
   getRouter = (): Router => {
     return this.router;
-  }
-
+  };
 }

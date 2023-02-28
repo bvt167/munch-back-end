@@ -7,7 +7,6 @@ import { Mongoose } from "mongoose";
 import { INVALID_BODY_PARAMETERS } from "../constant/CommonConstants";
 
 export default class PostController {
-
   private mongoose: Mongoose;
 
   constructor(mongoose: Mongoose) {
@@ -18,7 +17,7 @@ export default class PostController {
     try {
       if (!this.isValidCreatePostRequest(req.body)) {
         res.status(400).json({
-          status: INVALID_BODY_PARAMETERS
+          status: INVALID_BODY_PARAMETERS,
         });
         return;
       }
@@ -29,18 +28,17 @@ export default class PostController {
       // }
 
       res.status(200).json({
-        postId: "123456789"
+        postId: "123456789",
       });
     } catch (error) {
       console.log(error);
       return res.status(500).json({
-        status: error
+        status: error,
       });
     }
-  }
+  };
 
   private isValidCreatePostRequest = (body: any): boolean => {
     return body && body.media && body.caption && body.email && body.password;
-  }
-
+  };
 }

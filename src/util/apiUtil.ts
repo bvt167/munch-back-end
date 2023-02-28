@@ -3,16 +3,25 @@
  */
 
 import axios, { AxiosResponse } from "axios";
-import { CAROUSEL, FB_GRAPH_API_BASE_URL, IG_ACCOUNT_ID, VIDEO } from "../constant/CommonConstants";
+import {
+  CAROUSEL,
+  FB_GRAPH_API_BASE_URL,
+  IG_ACCOUNT_ID,
+  VIDEO,
+} from "../constant/CommonConstants";
 
 export const checkStatus = (resp: AxiosResponse) => {
   if (200 === resp.status) {
     return resp;
   }
   throw Error(resp.statusText);
-}
+};
 
-export const createItemContainer = async (mediaType: string, mediaUrl: string, isCarouselItem: boolean): Promise<string> => {
+export const createItemContainer = async (
+  mediaType: string,
+  mediaUrl: string,
+  isCarouselItem: boolean
+): Promise<string> => {
   const postParams: any = {
     is_carousel_item: String(isCarouselItem),
   };
@@ -22,19 +31,23 @@ export const createItemContainer = async (mediaType: string, mediaUrl: string, i
   } else {
     postParams.image_url = mediaUrl;
   }
-  const containerId = await axios.post(`${FB_GRAPH_API_BASE_URL}${IG_ACCOUNT_ID}/media`, postParams)
+  const containerId = await axios
+    .post(`${FB_GRAPH_API_BASE_URL}${IG_ACCOUNT_ID}/media`, postParams)
     .then(checkStatus)
-    .then(resp => resp.data);
+    .then((resp) => resp.data);
   return containerId;
-}
+};
 
-export const createCarouselContainer = async (containerIds: string[]): Promise<string> => {
+export const createCarouselContainer = async (
+  containerIds: string[]
+): Promise<string> => {
   const postParams: any = {
     media_type: CAROUSEL,
-    children: containerIds
+    children: containerIds,
   };
-  const carouselContainerId = await axios.post(`${FB_GRAPH_API_BASE_URL}${IG_ACCOUNT_ID}/media`, postParams)
+  const carouselContainerId = await axios
+    .post(`${FB_GRAPH_API_BASE_URL}${IG_ACCOUNT_ID}/media`, postParams)
     .then(checkStatus)
-    .then(resp => resp.data);
-    return carouselContainerId;
-}
+    .then((resp) => resp.data);
+  return carouselContainerId;
+};

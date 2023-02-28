@@ -2,65 +2,28 @@
  * Sets up server including middlewares, routes, and starting the server.
  */
 
-import http from 'http';
-import express, { Express } from 'express';
-import morgan from 'morgan';
-import mongoose from 'mongoose';
-import { DATABASE_URI, FB_APP_ID, FB_APP_SECRET_ID } from './constant/CommonConstants';
-import AccountController from './controller/accountController';
-import DatabaseRoutes from './routes/accountRoutes';
-import PostController from './controller/postController';
-import PostRoutes from './routes/postRoutes';
+import http from "http";
+import express, { Express } from "express";
+import morgan from "morgan";
+import mongoose from "mongoose";
+import {
+  DATABASE_URI,
+  FB_APP_ID,
+  FB_APP_SECRET_ID,
+} from "./constant/CommonConstants";
+import AccountController from "./controller/accountController";
+import DatabaseRoutes from "./routes/accountRoutes";
+import PostController from "./controller/postController";
+import PostRoutes from "./routes/postRoutes";
 
 main();
 
 async function main() {
   const app: Express = express();
-  // const passport = require('passport');
-  // const FacebookStrategy = require("passport-facebook").Strategy
-  // app.use(passport.initialize())
-  // app.use(passport.session())
-  // passport.serializeUser(function(user: any, done: any) {
-  //   done(null, user)
-  // })
-  // passport.deserializeUser(function(user: any, done: any) {
-  //   done(null, user)
-  // });
-
-  // passport.use(
-  //   new FacebookStrategy(
-  //     {
-  //       clientID: FB_APP_ID,
-  //       clientSecret: FB_APP_SECRET_ID,
-  //       callbackURL: "http://localhost:3000/auth/facebook/callback",
-  //     },
-  //     function(accessToken: any, refreshToken: any, profile: any, cb: any) {
-  //       console.log(accessToken);
-  //       return cb(null, profile)
-  //     }
-  //   )
-  // )
-  // app.get("/auth/facebook", passport.authenticate("facebook"))
-  // app.get(
-  //   "/auth/facebook/callback",
-  //   passport.authenticate("facebook", { failureRedirect: "/" }),
-  //   function(req, res) {
-  //     console.log("req", req.user)
-  //     res.render("data", {
-  //       user: req.user,
-  //     })
-  //   }
-  // )
-  // app.get("/", (req, res) => {
-  //   res.render("home", {
-  //     user: req.user,
-  //   })
-  // })
-
   await mongoose.connect(DATABASE_URI);
 
   /** Logging */
-  app.use(morgan('dev'));
+  app.use(morgan("dev"));
   /** Parse the request */
   app.use(express.urlencoded({ extended: false }));
   /** Takes care of JSON data */
@@ -68,39 +31,47 @@ async function main() {
 
   /** RULES OF OUR API */
   app.use((req, res, next) => {
-      // set the CORS policy
-      res.header('Access-Control-Allow-Origin', '*');
-      // set the CORS headers
-      res.header('Access-Control-Allow-Headers', 'origin, X-Requested-With,Content-Type,Accept, Authorization');
-      // set the CORS method headers
-      if (req.method === 'OPTIONS') {
-          res.header('Access-Control-Allow-Methods', 'GET PATCH DELETE POST');
-          return res.status(200).json({});
-      }
-      next();
+    // set the CORS policy
+    res.header("Access-Control-Allow-Origin", "*");
+    // set the CORS headers
+    res.header(
+      "Access-Control-Allow-Headers",
+      "origin, X-Requested-With,Content-Type,Accept, Authorization"
+    );
+    // set the CORS method headers
+    if (req.method === "OPTIONS") {
+      res.header("Access-Control-Allow-Methods", "GET PATCH DELETE POST");
+      return res.status(200).json({});
+    }
+    next();
   });
 
   /** Routes setup. */
   const databaseController = new AccountController(mongoose);
-  const databaseRoutes = new DatabaseRoutes(express.Router(), databaseController);
+  const databaseRoutes = new DatabaseRoutes(
+    express.Router(),
+    databaseController
+  );
 
   const postController = new PostController(mongoose);
   const postRoutes = new PostRoutes(express.Router(), postController);
 
   /** Routes */
-  app.use('/account', databaseRoutes.getRouter());
-  app.use('/post', postRoutes.getRouter());
+  app.use("/account", databaseRoutes.getRouter());
+  app.use("/post", postRoutes.getRouter());
 
   /** Error handling */
   app.use((req, res, next) => {
-      const error = new Error('not found');
-      return res.status(404).json({
-          message: error.message
-      });
+    const error = new Error("not found");
+    return res.status(404).json({
+      message: error.message,
+    });
   });
 
   /** Server */
   const httpServer = http.createServer(app);
   const PORT: any = process.env.PORT ?? 3000;
-  httpServer.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
+  httpServer.listen(PORT, () =>
+    console.log(`The server is running on port ${PORT}`)
+  );
 }

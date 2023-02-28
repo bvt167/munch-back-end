@@ -6,7 +6,6 @@ import { Router } from "express";
 import PostController from "../controller/postController";
 
 export default class PostRoutes {
-
   private router: Router;
   private controller: PostController;
 
@@ -19,6 +18,5 @@ export default class PostRoutes {
 
   getRouter = (): Router => {
     return this.router;
-  }
-
+  };
 }
