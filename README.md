@@ -4,7 +4,16 @@
 
 Backend handles the account logic and calls Instagram's API to make posts based on user parameters.
 
+## Scripts
+
+- `npm run dev`: Creates local server.
+- `npm run build`: Compiles Typescript into Javascript in `build` directory.
+- `npm run start`: Starts server from `build` directory.
+- `npm run test`: Runs jest unit tests.
+
 ## Endpoints
+
+### Base URL: https://munch.azurewebsites.net/
 
 ### Register
 - **Use Case:** Register restaurant account.
