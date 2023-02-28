@@ -71,18 +71,27 @@ or
   - **400:** Missing body parameters, account not found, restaurant not validated
   - **500:** Error reading from database
 
-### Post Single Image
-  - **Use Case:** Posts a single image to Instagram.
+### Create Post
+  - **Use Case:** Publishes a post to Instagram.
   - **Type:** POST
-  - **Endpoint:** /post/singleimage
-  - **Parameters:** Body parameters of `imageUrl`, `caption`, `email`, and `password`.
+  - **Endpoint:** /post/createpost
+  - **Parameters:** Body parameters of `media`, `caption`, `email`, and `password`.
   - **Return:** JSON
   - **Example Request:**
   URL/account/register
   Body:
   ```json
   {
-      "imageUrl": "https//www.example.com/images/bronz-fonz.jpg",
+      "media": [
+        {
+          "type": "image",
+          "url": "https//www.example.com/images/bronz-fonz.jpg"
+        },
+        {
+          "type": "video",
+          "url": "https//www.example.com/videos/bronz-fonz.mp4"
+        }
+      ],
       "caption": "testCaption",
       "email": "test",
       "password": "testPassword",

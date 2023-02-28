@@ -1,14 +1,15 @@
-import mongoose, { Model, Mongoose, Query } from "mongoose";
-import AccountController from "../../src/controller/accountController";
-import { Restaurant } from "../../src/interface/Restaurant";
-import restaurantSchema from "../../src/database/RestaurantSchema";
+import { Request } from "express";
+import { mockDeep } from 'jest-mock-extended';
+import mongoose, { Model, Mongoose } from "mongoose";
 import { ACCOUNT_ALREADY_REGISTERED, FAILURE, INVALID_BODY_PARAMETERS, INVALID_LOGIN, NON_VALIDATED_RESTAURANT, RESTAURANT, SUCCESS } from "../../src/constant/CommonConstants";
-import { mock, mockDeep } from 'jest-mock-extended';
-import { Request, Response, request } from "express";
-import { getMockResponse } from "../util/Util";
+import AccountController from "../../src/controller/accountController";
+import restaurantSchema from "../../src/database/RestaurantSchema";
+import { Restaurant } from "../../src/interface/Restaurant";
+import { getMockResponse } from "../util/testUtil";
 
 let databaseController: AccountController;
 let RestaurantModel: Model<Restaurant>;
+
 const testNonValidatedRestaurantDocument: any = {
   "restaurantName": "testName",
   "email": "testEmail",

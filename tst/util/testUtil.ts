@@ -2,6 +2,8 @@
  * Utility functions for testing.
  */
 
+import { AxiosResponse } from "axios";
+
 export const getMockResponse: any = () => {
   const res: any = {};
   res.status = jest.fn(status => {

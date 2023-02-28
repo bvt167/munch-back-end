@@ -1,5 +1,5 @@
 /**
- * Connects database routes to controller.
+ * Sets up account routes.
  */
 
 import { Router } from 'express';
