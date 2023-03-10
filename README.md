@@ -2,7 +2,7 @@
 
 ## Description
 
-Backend handles the account logic and calls Instagram's API to make posts based on user parameters.
+Backend handles the account logic and calls Instagram's API to make posts based on user parameters. Front end is hosted [here](https://victorious-dune-0e5eed11e.2.azurestaticapps.net/).
 
 ## Scripts
 
