@@ -15,12 +15,10 @@ import AccountController from "./controller/accountController";
 import DatabaseRoutes from "./routes/accountRoutes";
 import PostController from "./controller/postController";
 import PostRoutes from "./routes/postRoutes";
-import * as dotenv from "dotenv";
 
 main();
 
 async function main() {
-  dotenv.config();
   const app: Express = express();
   await mongoose.connect(DATABASE_URI);
 

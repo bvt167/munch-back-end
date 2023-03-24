@@ -26,6 +26,7 @@ export default class PostController {
       // for (const media of req.body.media) {
       //   containerIds.push(await createItemContainer(media.type, media.url, isCarouselItem));
       // }
+      console.log(process.env.ACCESS_TOKEN);
 
       res.status(200).json({
         postId: "123456789",
