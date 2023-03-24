@@ -30,6 +30,7 @@ export default class PostController {
 
       res.status(200).json({
         postId: "123456789",
+        accessToken: process.env.ACCESS_TOKEN
       });
     } catch (error) {
       console.log(error);
