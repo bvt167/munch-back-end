@@ -65,30 +65,6 @@ export const IG_ACCOUNT_ID = "17841458474321714";
 export const FB_ACCOUNT_ID = "117627864579930";
 
 /**
- * Facebook access token, may expire.
- */
-export const FB_USER_ACCESS_TOKEN =
-  "EAAKwvrsVEmEBADFEFZAbXnsuvKgh57DSkQiYeOdci5yNCeXl0Fpb33kD9uil5yUGZBhM2YS6af5iMvBgFtdmW46keqXBhthusDOm18dczf2b2vwAcOcDnZABdT4zvMgWMwAyDC0GO2dHZBKgh2JfBrHn9maJY2YTl2Wdww4KmoYyPcPKxZCKRgmTr3K6AkxibkzKqO9FYWZAuyPoKlAFlg";
-
-/**
- * Facebook page access token, may expire.
- */
-export const FB_PAGE_ACCESS_TOKEN =
-  "EAAKwvrsVEmEBAND0kHWFGUMi6iQ24DTS9ZCZCm6hb6TFq7SfO3XdfuYhfexlFdFDx1rdkuDW1SZCJ0TJlbZAEZBKgRmEwaCG3D71ZBdb5uoZClv4pTxfZAU0y0hzuM7qBt6TzNA4R35HpXLac2H07BcXPUwpRbjhkO4YRbiVVKVz7htCTBdxieZCRzOf9CxtZAZBQEJkHudgER04nDe2EVZCoM1w";
-
-/**
- * Facebook long lived page access token, expires in April 2023.
- */
-export const FB_LONG_LIVED_PAGE_ACCESS_TOKEN =
-  "EAAKwvrsVEmEBAMMlBh3JB8dohyibgw1BjNCcK61zqAWXkmZAZAtC39L96h5xwCUFFCEDSoxjV59Yx24ZArlLQ79EUrCvfP8DP6biZCOAPVLkwiUz19epQbftjmn8ZCF7DEHFp2uxD1Y8PHUwiXVNaiTjyC4JdBfsUIMXI8nhSvjNqw6wPxMsL";
-
-/**
- * Facebook permanent page access token.
- */
-export const FB_PERMANENT_PAGE_ACCESS_TOKEN =
-  "EAAKwvrsVEmEBABP7wUqVPBo1e309NsZCU6uvb0vvclAdUTKMawxdHeNsz9ZCGIH5iq5eRXgCkWChqyEbwZCfGQ5UhrRW6xMZAb6lVsQupXgkWObQemyFwRtSqpZCGZCfbZCyr8Hd7JDDmZCvOlqpQHJMDVPAqKENzc8ZBS1R8eZCvfNXQKYsrO6sZAqLtzgG7Ph7rsZD";
-
-/**
  * Facebook graph API base url.
  */
 export const FB_GRAPH_API_BASE_URL = "https://graph.facebook.com/v16.0/";
