@@ -60,6 +60,12 @@ async function main() {
   app.use("/account", databaseRoutes.getRouter());
   app.use("/post", postRoutes.getRouter());
 
+  app.use("/", (req, res, next) => {
+    return res.status(200).json({
+      message: "Munch backend API"
+    })
+  });
+
   /** Error handling */
   app.use((req, res, next) => {
     const error = new Error("not found");
