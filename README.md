@@ -39,6 +39,7 @@ Backend handles the account logic and calls Instagram's API to make posts based 
 
 ### Next Steps
 
+* Create Instagram account to post to
 * Complete Facebook processes and verifications to be able to call their endpoints to publish Instagram posts
   * Create development app with Facebook
   * Associate FB app with this project
