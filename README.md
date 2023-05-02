@@ -59,6 +59,13 @@ Backend handles the account logic and calls Instagram's API to make posts based 
     * Would have to create account and new instance to connect to
 * Add new controllers and routes as necessary for new features
 
+## Links
+
+* Hosted frontend web app: https://victorious-dune-0e5eed11e.2.azurestaticapps.net/
+* Hosted backend: https://munch.azurewebsites.net/
+* Frontend repository: https://github.com/bvt167/munch
+* Final presentation: https://docs.google.com/presentation/d/1-EqW145BVskgbnMoF0iMW0xGzqYMrucp8-4sMCL25og/edit#slide=id.p
+
 ## Scripts
 
 - `npm run dev`: Creates local server.
